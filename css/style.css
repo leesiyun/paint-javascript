@@ -4,15 +4,29 @@ body {
   background-color: #f6f9fc;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.back-page {
+  display: flex;
+  padding: 20px 15px 0px 20px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.back-page i {
+  font-size: 19px;
+}
+
+.canvas__main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 50px 0px;
+  padding: 20px 0px;
 }
 
 .canvas {
-  width: 64vmin;
-  height: 64vmin;
+  width: 66vmin;
+  height: 66vmin;
   background-color: white;
   border-radius: 15px;
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
