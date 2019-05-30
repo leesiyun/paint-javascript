@@ -21,7 +21,7 @@ const vw = function(v) {
   return (v * w) / 100;
 };
 
-let CANVAS_SIZE = Math.min(vh(66), vw(66));
+let CANVAS_SIZE = Math.min(vh(70), vw(70));
 
 canvas.width = CANVAS_SIZE;
 canvas.height = CANVAS_SIZE;
@@ -102,6 +102,10 @@ if (canvas) {
   canvas.addEventListener("mouseleave", onMouseMove);
   //canvas.addEventListener("click", canvasClickHandler);
   canvas.addEventListener("contextmenu", ctxMenuHandler);
+  canvas.addEventListener("touchstart", startPainting, false);
+  canvas.addEventListener("touchend", stopPainting, false);
+  canvas.addEventListener("touchcancel", onMouseMove, false);
+  canvas.addEventListener("touchmove", onMouseMove, false);
 }
 
 if (modeBtn) {
