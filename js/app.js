@@ -43,9 +43,10 @@ const startPainting = function() {
 };
 
 const onMouseMove = function(event) {
+  event.preventDefault();
   //console.log(event);
-  const x = event.offsetX;
-  const y = event.offsetY;
+  const x = event.offsetX || event.targetTouches[0].pageX;
+  const y = event.offsetY || event.targetTouches[0].pageY;
   if (!painting) {
     ctx.beginPath();
     ctx.moveTo(x, y);
@@ -60,6 +61,7 @@ const colorClickHandler = function(event) {
   ctx.strokeStyle = color;
   ctx.fillStyle = color;
   if (filling === true) {
+    ctx.beginPath();
     ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
   }
 };
@@ -102,10 +104,10 @@ if (canvas) {
   canvas.addEventListener("mouseleave", onMouseMove);
   //canvas.addEventListener("click", canvasClickHandler);
   canvas.addEventListener("contextmenu", ctxMenuHandler);
-  canvas.addEventListener("touchstart", startPainting, false);
-  canvas.addEventListener("touchend", stopPainting, false);
-  canvas.addEventListener("touchcancel", onMouseMove, false);
-  canvas.addEventListener("touchmove", onMouseMove, false);
+  canvas.addEventListener("touchstart", startPainting);
+  canvas.addEventListener("touchend", stopPainting);
+  canvas.addEventListener("touchmove", onMouseMove);
+  canvas.addEventListener("touchcancel", stopPainting);
 }
 
 if (modeBtn) {
