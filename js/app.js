@@ -5,23 +5,26 @@ const range = document.getElementById("jsRange");
 const modeBtn = document.getElementById("jsMode");
 const saveBtn = document.getElementById("jsSave");
 
-const vh = function(v) {
-  const h = Math.max(
+const getCanvasViewportHeight = function(viewport) {
+  const height = Math.max(
     document.documentElement.clientHeight,
     window.innerHeight || 0
   );
-  return (v * h) / 100;
+  return (viewport * height) / 100;
 };
 
-const vw = function(v) {
-  const w = Math.max(
+const getCanvasViewportWidth = function(viewport) {
+  const width = Math.max(
     document.documentElement.clientWidth,
     window.innerWidth || 0
   );
-  return (v * w) / 100;
+  return (viewport * width) / 100;
 };
 
-let CANVAS_SIZE = Math.min(vh(70), vw(70));
+const CANVAS_SIZE = Math.min(
+  getCanvasViewportHeight(75),
+  getCanvasViewportWidth(75)
+);
 
 canvas.width = CANVAS_SIZE;
 canvas.height = CANVAS_SIZE;
@@ -81,10 +84,6 @@ const moveBtnClickHandler = function() {
   }
 };
 
-/*const canvasClickHandler = function() {
-  ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
-};*/
-
 const ctxMenuHandler = function(event) {
   event.preventDefault();
 };
@@ -102,7 +101,6 @@ if (canvas) {
   canvas.addEventListener("mousedown", startPainting);
   canvas.addEventListener("mouseup", stopPainting);
   canvas.addEventListener("mouseleave", onMouseMove);
-  //canvas.addEventListener("click", canvasClickHandler);
   canvas.addEventListener("contextmenu", ctxMenuHandler);
   canvas.addEventListener("touchstart", startPainting);
   canvas.addEventListener("touchend", stopPainting);
